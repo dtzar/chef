@@ -1,2 +1,2 @@
 # chef
-To host chef recipes for demos and HOLs
+To host chef recipes and markdown files for demos and HOLs
