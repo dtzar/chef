@@ -4,6 +4,8 @@
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 
+$appstorage = "https://chefdemowus.blob.core.windows.net/mrpbuild/"
+
 # Runs apt-get update
 include_recipe "apt"
 
@@ -38,7 +40,7 @@ end
 
 # Load MongoDB data 
 remote_file 'mongodb_data' do
-    source 'https://oguzphackfest.blob.core.windows.net/scripts/MongoRecords.js'
+    source 'https://chefdemowus.blob.core.windows.net/mrpbuild/MongoRecords.js'
     path './MongoRecords.js'
     action :create
     notifies :run, "script[mongodb_import]", :immediately
@@ -60,7 +62,7 @@ end
 
 # Install the MRP app, restart the Tomcat service if necessary
 remote_file 'mrp_app' do
-    source 'https://oguzphackfest.blob.core.windows.net/scripts/mrp.war'
+    source 'https://chefdemowus.blob.core.windows.net/mrpbuild/mrp.war'
     path '/var/lib/tomcat7/webapps/mrp.war'
     action :create
     notifies :restart, "service[tomcat7]", :immediately
@@ -72,7 +74,7 @@ service 'tomcat7' do
 end
 
 remote_file 'ordering_service' do
-    source 'https://oguzphackfest.blob.core.windows.net/scripts/ordering-service-0.1.0.jar'
+    source 'https://chefdemowus.blob.core.windows.net/mrpbuild/ordering-service-0.1.0.jar'
     path './ordering-service-0.1.0.jar'
     action :create
     notifies :run, "script[stop_ordering_service]", :immediately
