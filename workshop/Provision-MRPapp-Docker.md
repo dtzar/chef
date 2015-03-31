@@ -75,7 +75,7 @@ Now we create a new recipe which to provision the docker host utilizing the chef
 		
 		machine 'dockerhost' do
 		  recipe 'docker'
-		End
+		end
 3. Provision a new docker host from your newly created recipe
 
 		chef-client -z recipes/dockerhostprovision.rb
